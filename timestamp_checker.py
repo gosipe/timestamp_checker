@@ -1,8 +1,9 @@
 import tkinter as tk
 import numpy as np
 from tkinter import filedialog
+import matplotlib.pyplot as plt
 
-# Function to browse and load a text file
+# Function to browse and load a text file --specifically designed for MOSEQ recordings with timestamp text files
 def load_file():
     # Open file dialog to select a text file
     file_path = filedialog.askopenfilename(
@@ -11,7 +12,6 @@ def load_file():
     )
     if file_path:
         with open(file_path, 'r') as file:
-            # Read lines and store them in the timestamps variable
             # Read lines and extract the first value before a space and 0
             timestamps = [line.split()[0] for line in file.readlines() if line.split()[0] != '0']
             print("Timestamps loaded:", timestamps)
@@ -26,7 +26,6 @@ if __name__ == "__main__":
     root.withdraw()  # Hide the root window
     timestamps = load_file()
     print(np.shape(timestamps))
-    import matplotlib.pyplot as plt
     if timestamps:
         # Convert timestamps to numeric values if possible
         try:
